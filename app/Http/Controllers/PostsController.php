@@ -16,6 +16,7 @@ class PostsController extends Controller
         if($request->has('page')){
             $page = $request->get('page');
         }
+        $totalRows = Post::with('user')->with('comments.user')->count();
         if($request->has('with')){
             $posts = Post::with('user')->with('comments.user')
                 ->offset($offset*($page-1))
@@ -27,10 +28,12 @@ class PostsController extends Controller
                 ->limit($limit)
                 ->get();
         }
+        
         return response()->json([
             'success' => true,
             'rows' => $posts,
-            'total' => count($posts)
+            'total' => $totalRows,
+            'total_pages' => ceil($totalRows/5)
         ]);
     }
     
