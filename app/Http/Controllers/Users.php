@@ -14,10 +14,10 @@ class Users extends Controller
         $response = [
             'success' => false,
         ];
-        $create = User::create($request->all());
-        if ($create) {
+        $created = User::create($request->all());
+        if ($created) {
             $response['success'] = true;
-            $response['response'] = $create;
+            $response['response'] = $created;
         }
         return response()->json($response);
     }

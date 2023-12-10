@@ -40,13 +40,13 @@ class PostsController extends Controller
         ];
         $data = $request->all();
         $user = auth()->user();
-        $create = Post::create([
+        $created = Post::create([
             'text' => $data['text'],
             'user_id' => $user->id
         ]);
-        if ($create) {
+        if ($created) {
             $response['success'] = true;
-            $response['response'] = $create;
+            $response['response'] = $created;
         }
         return response()->json($response);
     }
