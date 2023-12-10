@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users')->group(function () {
     Route::post('create', [\App\Http\Controllers\Users::class, 'register']);
     Route::post('login', [\App\Http\Controllers\Users::class, 'login']);
+    Route::patch('update', [\App\Http\Controllers\Users::class, 'update']);
 });
 
 Route::prefix('posts')->group(function () {
