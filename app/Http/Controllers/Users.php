@@ -30,8 +30,10 @@ class Users extends Controller
         $data = $request->all();
         $user = User::where('username', $data['username'])->first();
         if (!empty($user) && Hash::check($data['password'], $user->password)) {
+            $token = $user->createToken($user->email);
             $response['success'] = true;
             $response['response'] = $user;
+            $response['token'] = $token->plainTextToken;
         }
         return response()->json($response);
     }

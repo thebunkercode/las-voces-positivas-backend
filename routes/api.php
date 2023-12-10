@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::post('/users/create', [\App\Http\Controllers\Users::class, 'register']);
+Route::post('/users/login', [\App\Http\Controllers\Users::class, 'login']);
+Route::get('/posts/list', [\App\Http\Controllers\PostsController::class, 'list']);
+
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
 
-Route::post('/users/create', [\App\Http\Controllers\Users::class, 'register']);
-Route::post('/users/login', [\App\Http\Controllers\Users::class, 'login']);
 
-Route::get('/posts/list', [\App\Http\Controllers\PostsController::class, 'list']);
