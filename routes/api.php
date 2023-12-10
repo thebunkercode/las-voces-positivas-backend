@@ -20,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/users/create', [\App\Http\Controllers\Users::class, 'register']);
 Route::post('/users/login', [\App\Http\Controllers\Users::class, 'login']);
+
+Route::get('/posts/list', [\App\Http\Controllers\PostsController::class, 'list']);
