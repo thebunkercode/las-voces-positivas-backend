@@ -28,7 +28,7 @@ class Users extends Controller
             'success' => false,
         ];
         $data = $request->all();
-        $user = User::where('username', $data['username'])->first();
+        $user = User::where('email', $data['email'])->first();
         if (!empty($user) && Hash::check($data['password'], $user->password)) {
             $token = $user->createToken($user->email);
             $response['success'] = true;
