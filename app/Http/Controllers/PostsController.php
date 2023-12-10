@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function list(){
+    public function list(Request $request){
+        if($request->has('with')){
+            $posts = Post::with('comments')->get();
+        }else{
+            $posts = Post::all();
+        }
         return response()->json([
             'success' => true,
-            'rows' => Post::all()
+            'rows' => $posts 
         ]);
     }
 }
