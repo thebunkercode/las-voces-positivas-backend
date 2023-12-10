@@ -26,4 +26,8 @@ Route::prefix('posts')->group(function () {
         ->middleware('auth:sanctum');
 });
 
+Route::prefix('comments')->group(function () {
+    Route::post('create', [\App\Http\Controllers\CommentController::class, 'create'])
+        ->middleware('auth:sanctum');
+});
 
