@@ -9,9 +9,9 @@ class PostsController extends Controller
 {
     public function list(Request $request){
         if($request->has('with')){
-            $posts = Post::with('comments.user')->get();
+            $posts = Post::with('user')->with('comments.user')->get();
         }else{
-            $posts = Post::all();
+            $posts = Post::with('user')->get();
         }
         return response()->json([
             'success' => true,
