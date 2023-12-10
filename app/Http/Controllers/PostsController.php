@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Posts\PostCreateRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class PostsController extends Controller
 {
@@ -30,5 +32,22 @@ class PostsController extends Controller
             'rows' => $posts,
             'total' => count($posts)
         ]);
+    }
+    
+    public function create(PostCreateRequest $request){
+        $response = [
+            'success' => false,
+        ];
+        $data = $request->all();
+        $user = auth()->user();
+        $create = Post::create([
+            'text' => $data['text'],
+            'user_id' => $user->id
+        ]);
+        if ($create) {
+            $response['success'] = true;
+            $response['response'] = $create;
+        }
+        return response()->json($response);
     }
 }

@@ -21,10 +21,8 @@ Route::prefix('users')->group(function () {
 
 Route::prefix('posts')->group(function () {
     Route::get('list', [\App\Http\Controllers\PostsController::class, 'list']);
+    Route::put('create', [\App\Http\Controllers\PostsController::class, 'create'])
+        ->middleware('auth:sanctum');
 });
-
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 
 
